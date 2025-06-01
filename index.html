@@ -1,0 +1,101 @@
+<DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Srikanth Malothu - Portfolio</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Header -->
+        <header class="sticky">
+            <div class="header-content">
+                <h1>Srikanth Malothu</h1>
+                <p id="greeting">Frontend/Full Stack Developer</p>
+                <button id="theme-toggle">Toggle Dark Mode</button>
+                <nav>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#education">Education</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- About Section -->
+        <section id="about" class="fade-in">
+            <h2>About Me</h2>
+            <p>I’m a passionate Frontend/Full Stack Developer with expertise in building responsive web applications
+                using HTML, CSS, JavaScript, React, and Node.js. I thrive on solving problems and delivering scalable
+                solutions for real-world challenges.</p>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="fade-in">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">HTML</div>
+                <div class="skill-card">CSS</div>
+                <div class="skill-card">JavaScript</div>
+                <div class="skill-card">Python</div>
+                <div class="skill-card">SQL</div>
+                <div class="skill-card">Node.js</div>
+                <div class="skill-card">Express.js</div>
+                <div class="skill-card">IoT</div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="fade-in">
+            <h2>Projects</h2>
+            <div id="project-filters">
+                <button data-filter="all" class="filter-btn active">All</button>
+                <button data-filter="web" class="filter-btn">Web</button>
+                <button data-filter="iot" class="filter-btn">IoT</button>
+                <button data-filter="ai-ml" class="filter-btn">AI-ML</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-category="web">
+                    <h3>Todos Application</h3>
+                    <p>A dynamic to-do list web app with a clean, user-friendly interface.</p>
+                    <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
+                    <a href="https://ttooddooss.ccbp.tech/" target="_blank" class="btn">Live Demo</a>
+                </div>
+                <div class="project-card" data-category="web">
+                    <h3>Food Delivery Application</h3>
+                    <p>A responsive food delivery app interface for seamless user experience.</p>
+                    <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
+                    <a href="https://foodmunch810000.ccbp.tech/" target="_blank" class="btn">Live Demo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="fade-in">
+            <h2>Education</h2>
+            <p><strong>B.Tech in ECE</strong> - Aurora's Engineering College, Hyderabad (2018–2023, GPA: 5.91)</p>
+            <p><strong>MPC</strong> - SR Junior College, Karimnagar (2016–2018, 82.00%)</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="fade-in">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:srikanthmalothu.dev@gmail.com">srikanthmalothu.dev@gmail.com</a></p>
+            <p>Phone: +91-9553429427</p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/srikanth-malothu" target="_blank">Srikanth
+                    Malothu</a></p>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 Srikanth Malothu. All rights reserved.</p>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+
+    </html>
