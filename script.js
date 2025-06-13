@@ -1,68 +1,116 @@
-// Smooth Scrolling
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
+let todoItemsContainer = document.getElementById("todoItemsContainer");
+let addTodoButton = document.getElementById("addTodoButton");
+let saveTodoButton = document.getElementById("saveTodoButton");
 
-// Dynamic Greeting
-const greeting = document.getElementById('greeting');
-const hour = new Date().getHours();
-if (hour < 12) {
-    greeting.textContent = 'Good Morning! I’m a Frontend/Full Stack Developer';
-} else if (hour < 18) {
-    greeting.textContent = 'Good Afternoon! I’m a Frontend/Full Stack Developer';
-} else {
-    greeting.textContent = 'Good Evening! I’m a Frontend/Full Stack Developer';
+function getTodoListFromLocalStorage() {
+    let stringifiedTodoList = localStorage.getItem("todoList");
+    let parsedTodoList = JSON.parse(stringifiedTodoList);
+    if (parsedTodoList === null) {
+        return [];
+    } else {
+        return parsedTodoList;
+    }
 }
 
-// Dark Mode Toggle
-const themeToggle = document.getElementById('theme-toggle');
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-});
+let todoList = getTodoListFromLocalStorage();
+let todosCount = todoList.length;
 
-if (localStorage.getItem('darkMode') === 'true') {
-    document.body.classList.add('dark-mode');
+saveTodoButton.onclick = function () {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+};
+
+function onAddTodo() {
+    let userInputElement = document.getElementById("todoUserInput");
+    let userInputValue = userInputElement.value;
+
+    if (userInputValue === "") {
+        alert("Enter Valid Text");
+        return;
+    }
+
+    todosCount = todosCount + 1;
+
+    let newTodo = {
+        text: userInputValue,
+        uniqueNo: todosCount,
+    };
+    todoList.push(newTodo);
+    createAndAppendTodo(newTodo);
+    userInputElement.value = "";
 }
 
-// Project Filtering
-const filterButtons = document.querySelectorAll('.filter-btn');
-const projects = document.querySelectorAll('.project-card');
+addTodoButton.onclick = function () {
+    onAddTodo();
+};
 
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+function onTodoStatusChange(checkboxId, labelId) {
+    let checkboxElement = document.getElementById(checkboxId);
+    let labelElement = document.getElementById(labelId);
+    labelElement.classList.toggle("checked");
+}
 
-        const filter = button.getAttribute('data-filter');
-        projects.forEach(project => {
-            if (filter === 'all' || project.getAttribute('data-category') === filter) {
-                project.classList.remove('hidden');
-            } else {
-                project.classList.add('hidden');
-            }
-        });
-    });
-});
+function onDeleteTodo(todoId) {
+    let todoElement = document.getElementById(todoId);
+    todoItemsContainer.removeChild(todoElement);
 
-// Fade-in Animation on Scroll
-const sections = document.querySelectorAll('.fade-in');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animationDelay = '0.2s';
+    let deleteElementIndex = todoList.findIndex(function (eachTodo) {
+        let eachTodoId = "todo" + eachTodo.uniqueNo;
+        if (eachTodoId === todoId) {
+            return true;
+        } else {
+            return false;
         }
     });
-}, {
-    threshold: 0.1
-});
 
-sections.forEach(section => observer.observe(section));
+    todoList.splice(deleteElementIndex, 1);
+}
 
-// Set "All" as default filter
-document.querySelector('[data-filter="all"]').classList.add('active');
+function createAndAppendTodo(todo) {
+    let todoId = "todo" + todo.uniqueNo;
+    let checkboxId = "checkbox" + todo.uniqueNo;
+    let labelId = "label" + todo.uniqueNo;
+
+    let todoElement = document.createElement("li");
+    todoElement.classList.add("todo-item-container", "d-flex", "flex-row");
+    todoElement.id = todoId;
+    todoItemsContainer.appendChild(todoElement);
+
+    let inputElement = document.createElement("input");
+    inputElement.type = "checkbox";
+    inputElement.id = checkboxId;
+
+    inputElement.onclick = function () {
+        onTodoStatusChange(checkboxId, labelId);
+    };
+
+    inputElement.classList.add("checkbox-input");
+    todoElement.appendChild(inputElement);
+
+    let labelContainer = document.createElement("div");
+    labelContainer.classList.add("label-container", "d-flex", "flex-row");
+    todoElement.appendChild(labelContainer);
+
+    let labelElement = document.createElement("label");
+    labelElement.setAttribute("for", checkboxId);
+    labelElement.id = labelId;
+    labelElement.classList.add("checkbox-label");
+    labelElement.textContent = todo.text;
+    labelContainer.appendChild(labelElement);
+
+    let deleteIconContainer = document.createElement("div");
+    deleteIconContainer.classList.add("delete-icon-container");
+    labelContainer.appendChild(deleteIconContainer);
+
+    let deleteIcon = document.createElement("i");
+    deleteIcon.classList.add("far", "fa-trash-alt", "delete-icon");
+
+    deleteIcon.onclick = function () {
+        onDeleteTodo(todoId);
+    };
+
+    deleteIconContainer.appendChild(deleteIcon);
+}
+
+for (let todo of todoList) {
+    createAndAppendTodo(todo);
+}

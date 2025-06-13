@@ -1,101 +1,44 @@
-<DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Srikanth Malothu - Portfolio</title>
-        <link rel="stylesheet" href="style.css">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    </head>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5f59ca6ad3.js" crossorigin="anonymous"></script>
+</head>
 
-    <body>
-        <!-- Header -->
-        <header class="sticky">
-            <div class="header-content">
-                <h1>Srikanth Malothu</h1>
-                <p id="greeting">Frontend/Full Stack Developer</p>
-                <button id="theme-toggle">Toggle Dark Mode</button>
-                <nav>
-                    <a href="#about">About</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#education">Education</a>
-                    <a href="#contact">Contact</a>
-                </nav>
-            </div>
-        </header>
-
-        <!-- About Section -->
-        <section id="about" class="fade-in">
-            <h2>About Me</h2>
-            <p>I’m a passionate Frontend/Full Stack Developer with expertise in building responsive web applications
-                using HTML, CSS, JavaScript, React, and Node.js. I thrive on solving problems and delivering scalable
-                solutions for real-world challenges.</p>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="fade-in">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">HTML</div>
-                <div class="skill-card">CSS</div>
-                <div class="skill-card">JavaScript</div>
-                <div class="skill-card">Python</div>
-                <div class="skill-card">SQL</div>
-                <div class="skill-card">Node.js</div>
-                <div class="skill-card">Express.js</div>
-                <div class="skill-card">IoT</div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="fade-in">
-            <h2>Projects</h2>
-            <div id="project-filters">
-                <button data-filter="all" class="filter-btn active">All</button>
-                <button data-filter="web" class="filter-btn">Web</button>
-                <button data-filter="iot" class="filter-btn">IoT</button>
-                <button data-filter="ai-ml" class="filter-btn">AI-ML</button>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card" data-category="web">
-                    <h3>Todos Application</h3>
-                    <p>A dynamic to-do list web app with a clean, user-friendly interface.</p>
-                    <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
-                    <a href="https://ttooddooss.ccbp.tech/" target="_blank" class="btn">Live Demo</a>
-                </div>
-                <div class="project-card" data-category="web">
-                    <h3>Food Delivery Application</h3>
-                    <p>A responsive food delivery app interface for seamless user experience.</p>
-                    <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
-                    <a href="https://foodmunch810000.ccbp.tech/" target="_blank" class="btn">Live Demo</a>
+<body>
+    <div class="todos-bg-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="todos-heading">Todos</h1>
+                    <h1 class="create-task-heading">
+                        Create <span class="create-task-heading-subpart">Task</span>
+                    </h1>
+                    <input type="text" id="todoUserInput" class="todo-user-input"
+                        placeholder="What needs to be done?" />
+                    <button class="button" id="addTodoButton">Add</button>
+                    <h1 class="todo-items-heading">
+                        My <span class="todo-items-heading-subpart">Tasks</span>
+                    </h1>
+                    <ul class="todo-items-container" id="todoItemsContainer"></ul>
+                    <button class="button" id="saveTodoButton">Save</button>
+                    <script src="script.js"></script>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</body>
 
-        <!-- Education Section -->
-        <section id="education" class="fade-in">
-            <h2>Education</h2>
-            <p><strong>B.Tech in ECE</strong> - Aurora's Engineering College, Hyderabad (2018–2023, GPA: 5.91)</p>
-            <p><strong>MPC</strong> - SR Junior College, Karimnagar (2016–2018, 82.00%)</p>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="fade-in">
-            <h2>Contact</h2>
-            <p>Email: <a href="mailto:srikanthmalothu.dev@gmail.com">srikanthmalothu.dev@gmail.com</a></p>
-            <p>Phone: +91-9553429427</p>
-            <p>LinkedIn: <a href="https://linkedin.com/in/srikanth-malothu" target="_blank">Srikanth
-                    Malothu</a></p>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>© 2025 Srikanth Malothu. All rights reserved.</p>
-        </footer>
-
-        <script src="script.js"></script>
-    </body>
-
-    </html>
+</html>
